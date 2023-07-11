@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import CartWidget from "./CartWidget";
-import Imagen from '../images/logo.PNG'
+import Imagen from '../imagesComp/logo.PNG'
 
 function ColorSchemesExample() {
   return (

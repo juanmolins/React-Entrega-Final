@@ -3,9 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
+
 function ItemListContainer( {Imagen , Pizza , Ingredientes , Precio} ) {
   return (
-    <Card style={{ width: '16rem', margin: '10px' }}>
+    <Card style={{ width: '250px', margin: '10px' }}>
       <Card.Body>
       <Card.Img variant="top" src={ Imagen } />
         <Card.Title> { Pizza } </Card.Title>
