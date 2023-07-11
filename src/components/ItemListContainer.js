@@ -1,21 +1,22 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Image from '../images/especial.PNG'
 
-function BasicExample() {
+
+function ItemListContainer( {Imagen , Pizza , Ingredientes , Precio} ) {
   return (
-    <Card style={{ width: '16rem' , padding: '10px', margin: '10px' }}>
-      <Card.Img variant="top" src= { Image } alt="Pizza Especial" />
+    <Card style={{ width: '16rem', margin: '10px' }}>
       <Card.Body>
-        <Card.Title>Especial</Card.Title>
+      <Card.Img variant="top" src={ Imagen } />
+        <Card.Title> { Pizza } </Card.Title>
         <Card.Text>
-          Jamón, muzzarella y morrones
+          { Ingredientes }
         </Card.Text>
+        <Card.Title> { Precio } </Card.Title>
         <Button variant="warning">Añadir al carrito</Button>
       </Card.Body>
     </Card>
   );
 }
 
-export default BasicExample;
+export default ItemListContainer;
