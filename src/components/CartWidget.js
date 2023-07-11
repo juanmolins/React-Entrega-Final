@@ -9,7 +9,7 @@ return(
     
     <>
     <Cart color="grey"></Cart>
-    <div style= {{ color: 'grey' , padding: '10px' }}>1</div>
+    <div style= {{ color: 'grey' , padding: '10px' }}>0</div>
     </>
     
 );
