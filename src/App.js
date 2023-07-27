@@ -1,17 +1,20 @@
 import './App.css';
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetailContainer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
 function App() {
   return (
-    <div className="App">
-      <NavBar></NavBar>
-      <div className="d-flex container">
-      <ItemListContainer Imagen="/images/especial.PNG" Pizza="Especial" Ingredientes="Jamón, muzzarella y morrones" Precio="$ 2.500" />
-      <ItemListContainer Imagen="/images/napolitana.PNG" Pizza="Napolitana" Ingredientes="Muzzarella, tomates y ajo" Precio="$ 2.400" />
-      </div>
-    </div>
+    <BrowserRouter>
+    <NavBar/>
+    <Routes>
+      <Route path='/' element={<ItemListContainer/>}/>
+      <Route path='/categoria/:categoriaId' element={<ItemListContainer/>}/>
+      <Route path='/item/:id' element={<ItemDetailContainer/>}/>
+    </Routes>
+    </BrowserRouter>
   );
 }
 
