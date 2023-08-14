@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import ItemList from "./ItemList"
-import { getProducts } from "../mock/data"
 import { useParams } from 'react-router-dom'
+import { getFirestore, collection, getDocs, query, where } from 'firebase/firestore'
 
 
 
@@ -11,15 +11,18 @@ function ItemListContainer() {
   const {categoriaId} = useParams() 
 
   useEffect(()=>{
-    getProducts()
-    .then((res) => {
+      const querydb = getFirestore();
+      const queryCollection = collection(querydb, 'items');     
+      
       if(categoriaId){
-          setProductos(res.filter((item) => item.categoria === categoriaId))
+        const queryFilter = query(queryCollection, where('categoria', '==', categoriaId))
+        getDocs(queryFilter)
+        .then(res => setProductos(res.docs.map(item => ({id: item.id, ...item.data()}))))
       }else{
-          setProductos(res)
+        getDocs(queryCollection)
+        .then(res => setProductos(res.docs.map(item => ({id: item.id, ...item.data()}))))
       }
-    }) 
-  },[categoriaId])
+  } , [categoriaId])
   
   return (
         <div className='m-2'>

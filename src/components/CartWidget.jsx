@@ -1,17 +1,19 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import { Cart } from 'react-bootstrap-icons';
+import { useCartContext } from "../context/CartContext";
 
 
+export const CartWidget = () => {
+    const { totalProducts } = useCartContext();
 
-function CartWidget() {
-
-return(
-    
+return(    
     <>
-    <Cart color="grey"></Cart>
-    <div style= {{ color: 'grey' , padding: '10px' }}>0</div>
-    </>
-    
+    <Link to="/cart" style={{ color: 'white' }}>
+        <Cart />
+    </Link>
+    <div style= {{ color: 'white' , padding: '10px' }}>{totalProducts ()}</div>
+    </>    
 );
 }
 

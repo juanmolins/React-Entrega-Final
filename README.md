@@ -1,3 +1,34 @@
+A continuacion un listado de los componentes que forman a la aplicacion enumerando de manera que se puedan identificar los parentezcos entre los mismos:
+
+1. Navbar: el navbar es tomado de React Bootstrap, cuenta con el logo de pizzeria y enlaces a inicio (donde se muestran todos los productos) y uno por cada una de las dos categorias de productos que venden.
+  1.1: CartWidget: se encuentra ubicado en el sector derecho de la navbar y cuenta con un icono de carrito y con un numero, que primeramente fue hardcodeado y luego configurado para que muestre el total de los productos que hay en el carro.
+
+2. ItemListContainer: se encarga de obtener los datos de los productos alojados en firestore, ya sea el total de los items o los de una categoria especifica, que recibe a traves de useParams, y luego renderiza el componente ItemList.
+  2.1 ItemList: recibe una lista de productos como prop y utiliza el método map para recorrer la lista y renderizar el componente hijo llamado Item para cada producto. Este componente es responsable de la visualización de la lista de productos en la interfaz de usuario.
+    2.1.1 Item: se utiliza para representar visualmente un producto a traves de una card con detalles de presentacion de cada producto, incluida una imagen y un botón para ver más información.
+
+3. ItemDetailContainer: obtiene los datos de un producto específico de la base de datos Firestore utilizando el parámetro id de la URL y luego renderiza el componente hijo ItemDetail para mostrar los detalles de ese producto.
+  3.1 ItemDetail: representa los detalles de un producto, mostrando información como la imagen, la descripción y el precio. A traves del componente ItemCount permite agregar la cantidad deseada de ese item al carrito. A traves de un condicional, luego de agregar el producto al carro permite elegir "Ir al carrito" o "Seguir comprando", redirigiendonos en este caso al inicio.
+    3.1.1. ItemCount: este item se renderiza dentro de ItemDetail y permite elegir la cantidad que se agregara al carro del componente elegido. Luego de agregar la cantidad del producto deseada, se deja de renderizar para dar lugar a las opciones mencionadas anteriormente.
+
+4. CartView: Obteniendo datos de UseCartContext, realiza una verificación para determinar si el carrito está vacío. Si es así, renderiza un mensaje indicando que el carrito está vacío y un botón para comenzar la compra que nos lleva al inicio. Si el carrito no está vacío, renderiza los elementos del carrito utilizando el método map en el array cart pasando cada prodcuto como una prop al componente hijo.
+  Renderiza ademas el precio total, el cual tambien obtiene de UseCartContext y las opciones de seguir comprando, de limpiar el carrito y de "comprar carrito", opcion que se debe elegir para iniciar el proceso de checkout. 
+  4.1 ItemCart: muestra la información de un producto en el carrito, incluida su imagen, nombre, cantidad, subtotal y una opción para eliminarlo del carrito utilizando el contexto CartContext.
+
+5. Checkout: se encarga de generar y mostrar el proceso de "compra", solicitando a traves del componente CheckoutForm informacion al usuario para proceder a crear la orden en la base de datos Firestore, en una coleccion distinta a la que tiene almacenados los items y con los parametros elegidos.
+   Mientras realiza el proceso, mientras el loading se encuentra en estado true, muestra un gif el cual no se encuentra alojado en el servidor de imagenes sino que se encuentra en la carpeta images, como para que no se demore su carga. Una vez creada la orden, muestra el id otorgado automaticamente por firebase y una imagen de un tilde verde.
+   5.1. CheckoutForm: es renderizado por Checkout y pide al usuario datos que seran incluidos en la orden. 
+
+CartContext: Es un contexto que puede ser consultado por cualquiera de los componentes, independientemente de los parentezcos de cada uno. Contiene las funciones referidas al carrito: AddProdcut sirve para incorporar productos al array que representa el carrito, a traves de un UseState; TotalPrice sirve para calcular el precio total de los productos almacenados en el carro; IsInCart verifica si el producto que se esta queriendo agregar ya se encuentra en el carro para sumarle la cantidad seleccionada; RemoveProduct da la posibilidad de borrar alguno de los productos en el carro; ClearCart permite vaciar el carrito y TotalProducts suma la cantidad de productos en el carro para poder renderizar el mismo en el CartWidget.
+
+Firebase/config.js contiene el codigo que permite a la app conectarse a la consola de firebase, donde se encuentran almacenados los datos de la base de datos Firesstore correspondientes.
+
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
